@@ -1,0 +1,76 @@
+@import url("font-awesome.min.css");
+
+html {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  display: inline-block;
+  /*height: 100%;*/
+  width: 98%;
+}
+
+article {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#main {
+  margin: 17.5% 0;
+  vertical-align: middle;
+  text-align: center;
+}
+
+  #main ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+    #main ul li {
+      display: inline;
+      padding: 0 10px;
+    }
+
+  #main h1 {
+    font-weight: 300;
+    font-size: 2em;
+  }
+
+  #main p {
+    font-size: 0.9em;
+    color: #646464;
+    padding-bottom: 0.5em;
+  }
+
+  #main p a {
+    color: #307EA9;
+    text-decoration: none;
+  }
+
+.icon {
+  text-decoration: none;
+  position: relative;
+  color: grey;
+}
+
+  .icon:before {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none !important;
+  }
+
+  .icon > .label {
+    display: none;
+  }
