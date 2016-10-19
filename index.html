@@ -297,9 +297,7 @@
         }, 2000);
       });
       $('#download').click(function(){
-        location = document.location.hostname;
-        alert(location);
-        $.fileDownload(location+$(this).prop('href'))
+        $.fileDownload($(this).prop('href'))
         .done(function () { alert('File download a success!'); })
         .fail(function () { alert('File download failed!'); });
         return false;
