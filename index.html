@@ -7,55 +7,128 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-  <article id="main">
+  <article id="main" class="full-height full-width">
     <div id="bg"></div>
-    <h1>
-      Obed<b>Tandadjaja</b>
-    </h1>
-    <p>Senior Developer <a href="http://www.mymanny.com" target="_blank">@MyManny</a></p>
-    <ul>
-      <li>
-        <a href="#" class="icon fa-file-code-o fa-2x" id="projects">
-          <span class="label">
-            Personal Projects
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="http://www.linkedin.com/in/obedtandadjaja" target="_blank" class="icon fa-linkedin fa-2x">
-          <span class="label">
-            LinkedIn
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="http://www.github.com/obedtandadjaja" target="_blank" class="icon fa-github fa-2x">
-          <span class="label">
-            Github
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="http://www.instagram.com/obedjosiah" target="_blank" class="icon fa-instagram fa-2x">
-          <span class="label">
-            Instagram
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="mailto:mark@marktareshawty.com" class="icon fa-envelope fa-2x">
-          <span class="label">
-            Email
-          </span>
-        </a>
-      </li>
-    </ul>
+    <div class="center-container">
+      <h1>
+        Obed<b>Tandadjaja</b>
+      </h1>
+      <p>Senior Developer <a href="http://www.mymanny.com" target="_blank">@MyManny</a></p>
+      <ul>
+        <li>
+          <a href="#" class="icon fa-file-code-o fa-2x" id="professional_link">
+            <span class="label">
+              Professional Experience
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="icon fa-tasks fa-2x" id="project_link">
+            <span class="label">
+              Personal Projects
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="http://www.linkedin.com/in/obedtandadjaja" target="_blank" class="icon fa-linkedin fa-2x">
+            <span class="label">
+              LinkedIn
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="http://www.github.com/obedtandadjaja" target="_blank" class="icon fa-github fa-2x">
+            <span class="label">
+              Github
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="http://www.instagram.com/obedjosiah" target="_blank" class="icon fa-instagram fa-2x">
+            <span class="label">
+              Instagram
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:obed.tandadjaja@gmail.com" class="icon fa-envelope fa-2x">
+            <span class="label">
+              Email
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="icon fa-cloud-download fa-2x">
+            <span class="label">
+              Download Resume
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </article>
-  <!-- <article id="about">Hello</article> -->
+  <article id="professional" class="full-height full-width">
+    <div class="center-wrapper">
+      <div class="inner-wrapper">
+        <h1>Professional Experience</h1>
+        <ul>
+          <li>
+            <a href="http://mymanny.com">
+              <img src="assets/css/images/mymanny_logo.png">
+            </a>
+            <span><b>MyManny</b> - Chattanooga</span>
+            <span class="job-title">Senior Developer</span>
+          </li>
+          <li>
+            <img src="assets/css/images/metmin_logo.png">
+            <span><b>Metropolitan Ministries</b> - Chattanooga</span>
+            <span class="job-title">Web Developer</span>
+          </li>
+          <li>
+            <a href="http://protege.xyz">
+              <img src="assets/css/images/protege_logo.png">
+            </a>
+            <span><b>Protégé</b> - Chicago</span>
+            <span class="job-title">Web Developer</span>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="http://covenant.edu">
+              <img src="assets/css/images/covenant_logo.png">
+            </a>
+            <span><b>Covenant College</b> - Lookout Mountain</span>
+            <span class="job-title">Computer Science Tutor</span>
+          </li>
+          <li>
+            <a href="http://pro-int.co.id">
+              <img src="assets/css/images/proint_logo.png">
+            </a>
+            <span><b>ProInt Dinamika</b> - Jakarta</span>
+            <span class="job-title">Software Engineer Intern</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  <article id="project" class="full-height full-width">
+    <div class="center-wrapper">
+      <div class="inner-wrapper">
+        <h1>Personal Projects</h1>
+      </div>
+    </div>
+  </article>
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#projects').click(function(){
-        alert("Coming soon.");
+      $('#professional_link').click(function(){
+        $('html, body').animate({
+          scrollTop: $("#professional").offset().top
+        }, 1000);
+      })
+      $('#project_link').click(function(){
+        $('html, body').animate({
+          scrollTop: $("#project").offset().top
+        }, 2000);
       })
     })
   </script>
