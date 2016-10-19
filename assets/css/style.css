@@ -90,7 +90,7 @@ article {
   -ms-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
 
-  background: black url("images/bg.jpg") bottom left;
+  background: black url("images/bg.jpg") top left;
   background-repeat: repeat-x;
   height: 100%;
   left: 0;
@@ -166,5 +166,5 @@ article {
 
 #bg {
   background-size: 2250px auto;
-  width: 3750px;
+  width: 6750px;
 }
