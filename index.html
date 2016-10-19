@@ -5,6 +5,7 @@
   <title>Obed Tandadjaja</title>
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="assets/js/download.js"></script>
 </head>
 <body>
   <article id="main" class="full-height full-width">
@@ -58,7 +59,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="icon fa-cloud-download fa-2x">
+          <a href="/assets/Resume-latest.pdf" class="icon fa-cloud-download fa-2x" id="download">
             <span class="label">
               Download Resume
             </span>
@@ -124,12 +125,20 @@
         $('html, body').animate({
           scrollTop: $("#professional").offset().top
         }, 1000);
-      })
+      });
       $('#project_link').click(function(){
         $('html, body').animate({
           scrollTop: $("#project").offset().top
         }, 2000);
-      })
+      });
+      $('#download').click(function(){
+        location = document.location.hostname;
+        alert(location);
+        $.fileDownload(location+$(this).prop('href'))
+        .done(function () { alert('File download a success!'); })
+        .fail(function () { alert('File download failed!'); });
+        return false;
+      });
     })
   </script>
   <script>
