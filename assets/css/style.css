@@ -7,11 +7,12 @@ html {
   display: block;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  overflow: scroll;
 }
 
 body {
-  display: inline-block;
   height: 100%;
+  display: inline-block;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -75,7 +76,6 @@ article {
     }
 
     #main p {
-      font-size: 20px;
       color: #b3b3b3;
       padding-bottom: 0.5em;
     }
@@ -196,7 +196,7 @@ article {
 /* Mobile - landscape */
 @media only screen
   and (min-device-width: 320px)
-  and (max-device-width: 640px)
+  and (max-device-width: 736px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: landscape) {
   .center-wrapper .inner-wrapper {
@@ -214,7 +214,6 @@ article {
 }
 
 /* Tablets - Portrait */
-/* Portrait */
 @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
@@ -247,6 +246,28 @@ article {
   }
   #professional h1 {
     margin-top: 15%;
+  }
+}
+
+/* Laptop */
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+  .center-wrapper .inner-wrapper {
+    display: table-cell;
+    width: 100%;
+    padding: 0 15%;
+  }
+  .full-height {
+    min-height: 100%;
+  }
+  .center-container {
+    padding: 17.5% 0 17.5%;
+    text-align: center;
+  }
+  #professional h1 {
+    margin-top: 10%;
   }
 }
 
