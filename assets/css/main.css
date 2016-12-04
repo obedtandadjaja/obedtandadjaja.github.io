@@ -3463,11 +3463,11 @@
       }
 
         .wrapper:before, .wrapper:after {
-          height: 4.75em;
+          height: 4.9em;
         }
 
         .wrapper:before {
-          top: -4.75em;
+          top: -4.7em;
         }
 
         .wrapper:after {
@@ -3498,11 +3498,11 @@
       }
 
         .wrapper:before, .wrapper:after {
-          height: 2.5em;
+          height: 2.55em;
         }
 
         .wrapper:before {
-          top: -2.5em;
+          top: -2.42em;
         }
 
         .wrapper:after {
