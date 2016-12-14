@@ -3284,14 +3284,14 @@
       background-size: 100% 100%;
       content: '';
       display: block;
-      height: 6.5em;
+      height: 6.54em;
       position: absolute;
       width: 100%;
     }
 
     .wrapper:before {
       left: 0;
-      top: -6.5em;
+      top: -6.46em;
     }
 
     .wrapper:after {
