@@ -1,0 +1,91 @@
+/* Copyright 1998-2016 Northwoods Software Corporation. All Rights Reserved. */
+
+html {
+  width: 100%;
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  width: 98%;
+}
+
+.content {
+  margin: 15px;
+  width: 100%;
+}
+
+p {
+  max-width: 700px;
+}
+
+.diagramContainer {
+  border : solid 1px blue;
+}
+pre {
+  font-size : 9pt;
+}
+
+.footer {
+  text-align: right;
+  font-size: 10px;
+}
+
+#sample {
+  margin: 10px;
+}
+
+#accepted, #accepted_heading {
+  display: inline-block;
+  width: 49%;
+  vertical-align: text-top;
+}
+
+#rejected, #rejected_heading {
+  display: inline-block;
+  width: 49%;
+  vertical-align: text-top;
+}
+
+#menu {
+  white-space: nowrap;
+  overflow: hidden;
+  border: 1px solid #DDD;
+  padding: 4px;
+  margin-right: 5px;
+  background-color: #F9F9F9;
+  width: 120px;
+  float: left;
+}
+
+ol {
+  padding-left: 15px;
+}
+
+#sections {
+  list-style-type: none;
+  font-size: 13px;
+  padding: 0px;
+  margin: 0px;
+  line-height: 1.3em;
+}
+
+a { text-decoration: none; }
+
+.index {
+  margin-top: 0px;
+}
+
+.samplespan {
+  position: absolute;
+  z-index: 99;
+  display: none;
+  left: 135px;
+  margin-top: -80px;
+  border: 2px solid gray;
+  height: 200px;
+}
+
+a:hover .samplespan { display:block; }

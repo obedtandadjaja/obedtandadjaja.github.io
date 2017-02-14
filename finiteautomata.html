@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description" content="Finite Automata demo" />
+	<meta charset="UTF-8">
+	<title>Finite Automata</title>
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+  <script src="go.js"></script>
+  <link href="goSamples.css" rel="stylesheet" type="text/css" />
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="content">
+    <h3>Finite Automata</h3>
+    <p><b>Disclaimers / Instructions:</b></p>
+    <div class="row">
+      <ol>
+        <li><b>The path always starts with the lowest alphabet</b></li>
+        <li>To add link: Click the first state and then the second state, then click add link below</li>
+        <li>To remove state: Click the state for 2 seconds</li>
+        <li>To remove link: Double click the link</li>
+      </ol>
+    </div>
+    
+    <div id="sample">
+      <!-- The DIV for the Diagram needs an explicit size or else we won't see anything.
+           Also add a border to help see the edges. -->
+      <div id="myDiagramDiv" style="border: solid 1px black; width: 400px; height: 400px"></div>
+    </div>
+    <div class="row">
+      <button id="add_accepted_node">Add Accepted Node</button>
+      <button id="add_rejected_node">Add Rejected Node</button>
+      <button id="add_link_0">Add Link 0</button>
+      <button id="add_link_1">Add Link 1</button>
+      <button id="refresh">Refresh Canvas</button>
+    </div>
+    <div class="row">
+      <button id="evaluate">Evaluate with padded 0s</button>
+      <button id="evaluate2">Evaluate without padded 0s</button>
+    </div>
+    <br>
+    <hr>
+    <div class="row" style="width: 100%">
+      <h3>Test Results:</h3>
+      <div id="accepted_heading" style="color: green">Accepted</div>
+      <div id="rejected_heading" style="color: red">Rejected</div>
+      <div id="accepted"></div>
+      <div id="rejected"></div>
+    </div>
+  </div>
+</body>
+</html>
