@@ -77,7 +77,6 @@ function Tube(h, w, x) {
         this.highlight = false;
       } else {
         this.highlight = true;
-        alert("You lost");
         console.log("You lost mate");
       }
     }
