@@ -72,8 +72,8 @@ function Tube(h, w, x) {
   }
 
   this.hits = function(bird) {
-    if(bird.x >= this.x-32) {
-      if(bird.y >= this.height && bird.y <= this.height+tubeGap*2) {
+    if(bird.x >= this.x-16 && bird.x <= this.x+tubeW-16) {
+      if(bird.y >= this.height+16 && bird.y <= this.height+tubeGap*2-16) {
         this.highlight = false;
       } else {
         this.highlight = true;
