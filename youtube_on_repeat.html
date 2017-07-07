@@ -79,6 +79,7 @@
 		cursor: pointer;
 		background-color: #f2f2f2;
 		margin-bottom: 0.75em;
+		display: table;
 	}
 	.video h2 {
 		font-size: 1.5em;
@@ -91,12 +92,14 @@
 	.video .thumbnail {
 		display: inline-block;
 		margin: 5px;
+		margin-top: 1em;
 	}
 	.video .information {
 		display: inline-block;
 		text-align: left;
 		margin: 5px;
 		vertical-align: top;
+		width: 500px;
 	}
 	input[type="text"] {
 		border: 3px solid grey;
@@ -149,10 +152,13 @@
 		});
 		request.execute(function(response) {
 			$('.search-results').show();
+			$('html, body').animate({
+				scrollTop: $('.search-results').offset().top
+			}, 1000);
 			$(".video").remove();
 			$.each(response.result.items, function(i, item) {
 				$(".search-results").append(
-					'<div class="video">' +
+					'<div class="video" id="' + item.id.videoId + '">' +
 						'<div class="thumbnail">' +
 							'<img src="' + item.snippet.thumbnails.default.url + '" />' +
 						'</div>' +
@@ -163,6 +169,12 @@
 						'</div>' +
 					'</div>'
 				);
+			});
+			$(".video").click(function(e) {
+				setNewYoutubeVideo(e.target.id);
+				$('html, body').animate({
+					scrollTop: 0
+				}, 1000);
 			});
 		});
 	}
@@ -279,6 +291,7 @@
 		</section>
 		<div class="search-results">
 			<h1>Search Results</h1>
+			<div class="video"><div class="thumbnail"><img src="https://i.ytimg.com/vi/IYnsfV5N2n8/default.jpg"></div><div class="information"><h2>asdfmovie</h2><p> By TomSka</p><p>ass-duff-moo-vee - More asdfmovie! https://www.youtube.com/playlist?list=PL3A5849BDE0581B19 asdfmovie t-shirts (http://sharkrobot.com/asdfmovie) ...</p></div></div>
 		</div>
 	</div>
 </body>
