@@ -86,6 +86,8 @@
 			});
 		});
 
+		console.log(gapi.client.youtube);
+
 		var tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/iframe_api";
 		var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -96,7 +98,17 @@
 		console.log("init");
 		gapi.client.setApiKey("AIzaSyCzDxBgSiJZb4xVQdVoKIrEpbHs3xpIvYU");
 		gapi.client.load("youtube", "v3", function() {
-			console.log("youtube ready");
+			console.log("asdfkjlasdf");
+			var request = gapi.client.youtube.search.list({
+				part: "snippet",
+				type: "video",
+				q: "cristiano ronaldo",
+				maxResults: 10,
+				order: "viewCount"
+			});
+			request.execute(function(response) {
+				console.log(response);
+			});
 		});
 	}
 
