@@ -211,7 +211,7 @@
 	  	player = new YT.Player('player', {
 	  		height: '390',
 	  		width: '640',
-	  		videoId: src,
+	  		videoId: String(src),
 	  		events: {
 	  			'onReady': onPlayerReady,
 	  			'onStateChange': onPlayerStateChange
