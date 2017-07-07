@@ -5,6 +5,10 @@
 		width: 100%;
 		height: 100%;
 	}
+	h1, h2, p {
+		font-family: "Helvetica";
+		margin: 0.25em 0;
+	}
 	.wrapper {
 		width: 80%;
 		text-align: center;
@@ -63,6 +67,35 @@
 	section.range-slider input[type=range]::-moz-focus-outer {
 		border: 0;
 	}
+	.search-results {
+		width: 640px;
+		margin: auto;
+	}
+	.search-results .video {
+		width: 100%;
+		text-align: left;
+		cursor: pointer;
+		background-color: #f2f2f2;
+		margin-bottom: 0.75em;
+	}
+	.video h2 {
+		font-size: 1.5em;
+		margin: 0.25em 0;
+	}
+	.video p {
+		font-size: 1em;
+		margin: 0.25em 0;
+	}
+	.video .thumbnail {
+		display: inline-block;
+		margin: 5px;
+	}
+	.video .information {
+		display: inline-block;
+		text-align: left;
+		margin: 5px;
+		vertical-align: top;
+	}
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -76,6 +109,7 @@
 		});
 
 		$('input[type="submit"]').attr("disabled", true);
+		$('input[type="text"]').focus();
 
 		var tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/iframe_api";
@@ -100,7 +134,21 @@
 			order: "viewCount"
 		});
 		request.execute(function(response) {
-			console.log(response);
+			$(".video").remove();
+			$.each(response.result.items, function(i, item) {
+				$(".search-results").append(
+					'<div class="video">' +
+						'<div class="thumbnail">' +
+							'<img src="' + item.snippet.thumbnails.default.url + '" />' +
+						'</div>' +
+						'<div class="information">' +
+							'<h2>' + item.snippet.title + '</h2>' +
+							'<p> By ' + item.snippet.channelTitle + '</p>' +
+							'<p>' + item.snippet.description + '</p>' +
+						'</div>' +
+					'</div>'
+				);
+			});
 		});
 	}
 
@@ -190,32 +238,6 @@
 	  		event.target.seekTo($(".range-slider input:nth-child(1)").value, true);
 	  	}
 	}
-
-	// function start() {
-	// 	console.log("goes in");
- //  		gapi.client.init({
-	// 	  	'apiKey': 'AIzaSyAvY59MqlH5Gyc2R_N0NEpa3UwKN87yfvE',
-	// 	    'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
-	// 	    'client_id': '950588776501-8r38u8qgfle8tt4s7eockj7s1r8ghtsc.apps.googleusercontent.com',
-	// 	    'scope': 'profile'
-	// 	})
-	// 	.then(function() {
-	// 		console.log("hello?");
-	// 		gapi.client.load('youtube', 'v3', function() {
-	// 			var request = gapi.client.youtube.search.list({
-	// 			    q: "cristiano ronaldo",
-	// 			    part: 'snippet'
-	// 			});
-	// 			request.execute(function(response) {
-	// 			    console.log(response.result);
-	// 			});
-	// 		});
-	// 	}).then(function(response) {
-	// 		console.log(response.result);
-	// 	}, function(reason) {
-	// 		console.log('Error: ' + reason.result.error.message);
-	// 	});
-	// }
 </script>
 <script src="https://apis.google.com/js/client.js?onload=init"></script>
 <head>
@@ -239,6 +261,9 @@
 			<p id="start_value" style="float: left"></p>
 			<p id="end_value" style="float: right"></p>
 		</section>
+		<div class="search-results">
+			<h1>Search Results</h1>
+		</div>
 	</div>
 </body>
 </html>
