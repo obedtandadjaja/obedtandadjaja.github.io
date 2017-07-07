@@ -118,6 +118,7 @@
 <script>
 	var player;
 	var low, high;
+	var checkTime;
 
 	$(document).ready(function() {
 		$('input[type="submit"]').click(function() {
@@ -170,6 +171,7 @@
 				);
 			});
 			$(".video").click(function(e) {
+				stopCheckTime();
 				setNewYoutubeVideo(e.target.id);
 				$('html, body').animate({
 					scrollTop: 0
@@ -251,13 +253,21 @@
 	function onPlayerReady(event) {
 	  	updateSliders();
 	  	event.target.playVideo();
-	  	setInterval(function() {
+	 	checkTime(); 	
+	}
+
+	function setCheckTime() {
+		checkTime = setInterval(function() {
 	  		if(player != undefined) {
 	  			if(player.getCurrentTime() > high) {
 		  			player.seekTo(low);
 		  		}
 	  		}
 	  	}, 500);
+	}
+
+	function stopCheckTime() {
+		clearInterval(checkTime);
 	}
 
 	function onPlayerStateChange(event) {
