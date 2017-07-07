@@ -252,8 +252,10 @@
 	  	updateSliders();
 	  	event.target.playVideo();
 	  	setInterval(function() {
-	  		if(player.getCurrentTime() > high) {
-	  			player.seekTo(low);
+	  		if(player != undefined) {
+	  			if(player.getCurrentTime() > high) {
+		  			player.seekTo(low);
+		  		}
 	  		}
 	  	}, 500);
 	}
