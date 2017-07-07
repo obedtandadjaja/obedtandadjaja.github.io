@@ -168,14 +168,14 @@
 							'<p>' + item.snippet.description + '</p>' +
 						'</div>' +
 					'</div>'
-					$(".search-results .video:last-child").click(function(e) {
-						stopCheckTime();
-						setNewYoutubeVideo(e.target.id);
-						$('html, body').animate({
-							scrollTop: 0
-						}, 1000);
-					});
 				);
+				$(".search-results .video:last-child").click(function(e) {
+					stopCheckTime();
+					setNewYoutubeVideo(e.target.id);
+					$('html, body').animate({
+						scrollTop: 0
+					}, 1000);
+				});
 			});
 		});
 	}
