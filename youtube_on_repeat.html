@@ -125,7 +125,6 @@
 		});
 
 		$('input[type="submit"]').prop("disabled", true);
-		$('input[type="submit"]').removeAttr("disabled");
 		$('input[type="text"]').focus();
 		$('.search-results').hide();
 
@@ -138,7 +137,7 @@
 	function init() {
 		gapi.client.setApiKey("AIzaSyCzDxBgSiJZb4xVQdVoKIrEpbHs3xpIvYU");
 		gapi.client.load("youtube", "v3", function() {
-			$('input[type="submit"]').prop("disabled", false);
+			$('input[type="submit"]').removeAttr("disabled");
 		});
 	}
 
