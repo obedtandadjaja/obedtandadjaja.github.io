@@ -6,7 +6,7 @@
 		height: 100%;
 	}
 	h1, h2, p {
-		font-family: "Helvetica";
+		font-family: "Verdana";
 		margin: 0.25em 0;
 	}
 	.wrapper {
@@ -14,6 +14,8 @@
 		text-align: center;
 		margin-left: auto;
 		margin-right: auto;
+		padding-top: 3em;
+		vertical-align: middle;
 	}
 	section.range-slider {
 		position: relative;
@@ -96,6 +98,17 @@
 		margin: 5px;
 		vertical-align: top;
 	}
+	input[type="text"] {
+		border: 3px solid grey;
+		padding: 5px;
+	}
+	input[type="submit"] {
+		border: 3px solid #2c3e50;
+		padding: 5px;
+		background-color: #2c3e50;
+		color: white;
+		cursor: pointer;
+	}
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -108,8 +121,10 @@
 			search();
 		});
 
-		$('input[type="submit"]').attr("disabled", true);
+		$('input[type="submit"]').prop("disabled", true);
+		$('input[type="submit"]').removeAttr("disabled");
 		$('input[type="text"]').focus();
+		$('.search-results').hide();
 
 		var tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/iframe_api";
@@ -118,10 +133,9 @@
 	});
 
 	function init() {
-		console.log("init");
 		gapi.client.setApiKey("AIzaSyCzDxBgSiJZb4xVQdVoKIrEpbHs3xpIvYU");
 		gapi.client.load("youtube", "v3", function() {
-			$('input[type="submit"]').attr("disabled", false);
+			$('input[type="submit"]').prop("disabled", false);
 		});
 	}
 
@@ -134,6 +148,7 @@
 			order: "viewCount"
 		});
 		request.execute(function(response) {
+			$('.search-results').show();
 			$(".video").remove();
 			$.each(response.result.items, function(i, item) {
 				$(".search-results").append(
@@ -246,8 +261,9 @@
 </head>
 <body>
 	<div class="wrapper">
-		<h1>TITLE</h1>
-		<input type="text" placeholder="Paste youtube url" />
+		<h1>Youtube on Repeat</h1>
+		<br>
+		<input type="text" placeholder="Search Youtube video" />
 		<input type="submit" />
 		<br>
 		<br>
