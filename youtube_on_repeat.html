@@ -206,7 +206,8 @@
 	}
 
 	function setNewYoutubeVideo(src) {
-	  	$("iframe").remove();
+	  	$("#player").remove();
+	  	$(".range-slider").before("<div id='player'></div>");
 	  	player = new YT.Player('player', {
 	  		height: '390',
 	  		width: '640',
