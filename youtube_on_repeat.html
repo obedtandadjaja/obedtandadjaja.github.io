@@ -66,69 +66,41 @@
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://apis.google.com/js/api.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=init"></script>
 <script>
 	var player;
 	var low, high;
-	var OAUTH2_CLIENT_ID = '950588776501-8r38u8qgfle8tt4s7eockj7s1r8ghtsc';
-	var OAUTH2_SCOPES = [
-	  'https://www.googleapis.com/auth/youtube'
-	];
 
 	$(document).ready(function() {
 		$('input[type="submit"]').click(function() {
-			src = $('input[type="text"]').val().split("=")[1];
-			setNewYoutubeVideo(src);
+			// src = $('input[type="text"]').val().split("=")[1];
+			// setNewYoutubeVideo(src);
+			var request = gapi.client.youtube.search.list({
+				part: "snippet",
+				type: "video",
+				q: encodeURIComponent($('input[type="text"]').val()).replace(/%20/g, "+"),
+				maxResults: 10,
+				order: "viewCount"
+			});
+			request.execute(function(response) {
+				console.log(response);
+			});
 		});
 
 		var tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/iframe_api";
 		var firstScriptTag = document.getElementsByTagName('script')[0];
 		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-		gapi.load('client', start);
 	});
 
-	function start() {
-		console.log("hello");
-		gapi.auth.init(function() {
-			console.log("hello");
-		    window.setTimeout(checkAuth, 1);
+	function init() {
+		gapi.client.setApiKey("AIzaSyCzDxBgSiJZb4xVQdVoKIrEpbHs3xpIvYU")
+		gapi.client.load("youtube", "v3", function() {
+			// on youtube api ready
 		});
 	}
 
-	function checkAuth() {
-		console.log("hello");
-		gapi.auth.authorize({
-		    client_id: OAUTH2_CLIENT_ID,
-		    scope: OAUTH2_SCOPES,
-		    immediate: true
-		}, handleAuthResult);
-	}
-
-	function handleAuthResult(authResult) {
-	  if (authResult && !authResult.error) {
-	    $('.pre-auth').hide();
-	    $('.post-auth').show();
-	    loadAPIClientInterfaces();
-	  } else {
-	    $('#login-link').click(function() {
-	      gapi.auth.authorize({
-	        client_id: OAUTH2_CLIENT_ID,
-	        scope: OAUTH2_SCOPES,
-	        immediate: false
-	        }, handleAuthResult);
-	    });
-	  }
-	}
-
-	function loadAPIClientInterfaces() {
-	  gapi.client.load('youtube', 'v3', function() {
-	    console.log("hello");
-	  });
-	}
-
-	function getVals(){
+	function getVals() {
 	  	// Get slider values
 	  	var parent = this.parentNode;
 	  	var slides = parent.getElementsByTagName("input");
