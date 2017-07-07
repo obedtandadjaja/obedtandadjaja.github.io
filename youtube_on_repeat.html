@@ -168,14 +168,14 @@
 							'<p>' + item.snippet.description + '</p>' +
 						'</div>' +
 					'</div>'
+					$(".search-results .video:last-child").click(function(e) {
+						stopCheckTime();
+						setNewYoutubeVideo(e.target.id);
+						$('html, body').animate({
+							scrollTop: 0
+						}, 1000);
+					});
 				);
-			});
-			$(".video").click(function(e) {
-				stopCheckTime();
-				setNewYoutubeVideo(e.target.id);
-				$('html, body').animate({
-					scrollTop: 0
-				}, 1000);
 			});
 		});
 	}
@@ -208,6 +208,7 @@
 	function setNewYoutubeVideo(src) {
 	  	$("#player").remove();
 	  	$(".range-slider").before("<div id='player'></div>");
+	  	console.log(String(src));
 	  	player = new YT.Player('player', {
 	  		height: '390',
 	  		width: '640',
