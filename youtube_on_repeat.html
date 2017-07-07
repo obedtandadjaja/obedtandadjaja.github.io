@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+	}
+	.wrapper {
+		width: 80%;
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	section.range-slider {
+		position: relative;
+		width: 640px;
+		height: 35px;
+		text-align: center;
+		margin: auto;
+	}
+	section.range-slider-values {
+		position: relative;
+		width: 640px;
+		height: 35px;
+		margin: auto;
+	}
+	section.range-slider input {
+		pointer-events: none;
+		position: absolute;
+		overflow: hidden;
+		left: 0;
+		top: 15px;
+		width: 640px;
+		outline: none;
+		height: 18px;
+		margin: 0;
+		padding: 0;
+	}
+	section.range-slider input::-webkit-slider-thumb {
+		pointer-events: all;
+		position: relative;
+		z-index: 1;
+		outline: 0;
+	}
+	section.range-slider input::-moz-range-thumb {
+		pointer-events: all;
+		position: relative;
+		z-index: 10;
+		-moz-appearance: none;
+		width: 9px;
+	}
+	section.range-slider input::-moz-range-track {
+		position: relative;
+		z-index: -1;
+		background-color: rgba(0, 0, 0, 1);
+		border: 0;
+	}
+	section.range-slider input:last-of-type::-moz-range-track {
+		-moz-appearance: none;
+		background: none transparent;
+		border: 0;
+	}
+	section.range-slider input[type=range]::-moz-focus-outer {
+		border: 0;
+	}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+	var player;
+	var low, high;
+	var OAUTH2_CLIENT_ID = '950588776501-8r38u8qgfle8tt4s7eockj7s1r8ghtsc';
+	var OAUTH2_SCOPES = [
+	  'https://www.googleapis.com/auth/youtube'
+	];
+
+	$(document).ready(function() {
+		$('input[type="submit"]').click(function() {
+			src = $('input[type="text"]').val().split("=")[1];
+			setNewYoutubeVideo(src);
+		});
+
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		gapi.load('client', start);
+	});
+
+	function start() {
+		console.log("hello");
+		gapi.auth.init(function() {
+			console.log("hello");
+		    window.setTimeout(checkAuth, 1);
+		});
+	}
+
+	function checkAuth() {
+		console.log("hello");
+		gapi.auth.authorize({
+		    client_id: OAUTH2_CLIENT_ID,
+		    scope: OAUTH2_SCOPES,
+		    immediate: true
+		}, handleAuthResult);
+	}
+
+	function handleAuthResult(authResult) {
+	  if (authResult && !authResult.error) {
+	    $('.pre-auth').hide();
+	    $('.post-auth').show();
+	    loadAPIClientInterfaces();
+	  } else {
+	    $('#login-link').click(function() {
+	      gapi.auth.authorize({
+	        client_id: OAUTH2_CLIENT_ID,
+	        scope: OAUTH2_SCOPES,
+	        immediate: false
+	        }, handleAuthResult);
+	    });
+	  }
+	}
+
+	function loadAPIClientInterfaces() {
+	  gapi.client.load('youtube', 'v3', function() {
+	    console.log("hello");
+	  });
+	}
+
+	function getVals(){
+	  	// Get slider values
+	  	var parent = this.parentNode;
+	  	var slides = parent.getElementsByTagName("input");
+	  	low = parseFloat(slides[0].value);
+	  	high = parseFloat(slides[1].value);
+	  	if( low > high ) { 
+	  		var tmp = high; 
+	  		high = low; 
+	  		low = tmp; 
+	  	}
+	  	$("#start_value").text(secondsToMinutes(low));
+	  	$("#end_value").text(secondsToMinutes(high));
+
+	  	if(low > player.getCurrentTime()) {
+	  		player.seekTo(low, true);
+	  	}
+	  }
+
+	function secondsToMinutes(seconds) {
+	  	minute = Math.floor(seconds/60);
+	  	sec = (seconds%60);
+	  	return minute + ":" +sec;
+	}
+
+	function setNewYoutubeVideo(src) {
+	  	$("iframe").remove();
+	  	player = new YT.Player('player', {
+	  		height: '390',
+	  		width: '640',
+	  		videoId: src,
+	  		events: {
+	  			'onReady': onPlayerReady,
+	  			'onStateChange': onPlayerStateChange
+	  		},
+	  		playerVars: {
+	  			autoplay: 1,
+	  			rel: 0,
+	  			showinfo: 0,
+	  			wmode: "Opaque",
+	  			color: "white"
+	  		}
+	  	});
+	}
+
+	function updateSliders() {
+	  	var slide1 = $(".range-slider input:nth-child(1)");
+	  	var slide2 = $(".range-slider input:nth-child(2)");
+	  	slide1.attr('max', player.getDuration());
+	  	slide2.attr('max', player.getDuration());
+	  	slide2.attr('value', player.getDuration());
+	  	var sliderSections = document.getElementsByClassName("range-slider");
+	  	for( var x = 0; x < sliderSections.length; x++ ){
+	  		var sliders = sliderSections[x].getElementsByTagName("input");
+	  		for( var y = 0; y < sliders.length; y++ ){
+	  			if( sliders[y].type ==="range" ) {
+	  				sliders[y].oninput = getVals;
+	  				sliders[y].oninput();
+	  			}	
+	  		}
+	  	}
+
+	  	$(".range-slider").show();
+	  	$(".range-slider-values").show();
+	}
+
+	function onYouTubeIframeAPIReady() {
+	  	setNewYoutubeVideo("TkxEDJSLtyI");
+	}
+
+	function onPlayerReady(event) {
+	  	updateSliders();
+	  	event.target.playVideo();
+	  	setInterval(function() {
+	  		if(player.getCurrentTime() > high) {
+	  			player.seekTo(low);
+	  		}
+	  	}, 500);
+	}
+
+	function onPlayerStateChange(event) {
+	  	if(event.data === 0) {
+	  		event.target.playVideo();
+	  		event.target.seekTo($(".range-slider input:nth-child(1)").value, true);
+	  	}
+	}
+
+	// function start() {
+	// 	console.log("goes in");
+ //  		gapi.client.init({
+	// 	  	'apiKey': 'AIzaSyAvY59MqlH5Gyc2R_N0NEpa3UwKN87yfvE',
+	// 	    'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
+	// 	    'client_id': '950588776501-8r38u8qgfle8tt4s7eockj7s1r8ghtsc.apps.googleusercontent.com',
+	// 	    'scope': 'profile'
+	// 	})
+	// 	.then(function() {
+	// 		console.log("hello?");
+	// 		gapi.client.load('youtube', 'v3', function() {
+	// 			var request = gapi.client.youtube.search.list({
+	// 			    q: "cristiano ronaldo",
+	// 			    part: 'snippet'
+	// 			});
+	// 			request.execute(function(response) {
+	// 			    console.log(response.result);
+	// 			});
+	// 		});
+	// 	}).then(function(response) {
+	// 		console.log(response.result);
+	// 	}, function(reason) {
+	// 		console.log('Error: ' + reason.result.error.message);
+	// 	});
+	// }
+</script>
+<head>
+	<meta charset="UTF-8">
+	<title>Listen On Repeat</title>
+</head>
+<body>
+	<div class="wrapper">
+		<h1>TITLE</h1>
+		<input type="text" placeholder="Paste youtube url" />
+		<input type="submit" />
+		<br>
+		<br>
+		<div id="player"></div>
+		<br>
+		<section class="range-slider">
+			<input value="0" min="0" max="168" step="1" type="range">
+			<input value="168" min="0" max="168" step="1" type="range">
+		</section>
+		<section class="range-slider-values">
+			<p id="start_value" style="float: left"></p>
+			<p id="end_value" style="float: right"></p>
+		</section>
+	</div>
+</body>
+</html>
