@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Time Zone Map</title>
+  <style>
+    html, body {
+      margin: 0px;
+      width: 100%;
+      height: 100%;
+      font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      font-weight: bold;
+      color: white;
+    }
+    .map_item {
+      position: absolute; 
+      padding: 5px 10px;
+      background-color: #e67e22; 
+      border-radius: 3px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    img {
+      width: 100%;
+    }
+  </style>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+  <script>
+    function padTimeString(str) {
+      return str/10 < 1 ? "0"+str : str;
+    }
+
+    // add prototype to Date object
+    Date.prototype.stdTimezoneOffset = function() {
+      var jan = new Date(this.getFullYear(), 0, 1);
+      var jul = new Date(this.getFullYear(), 6, 1);
+      return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+    }
+
+    Date.prototype.dst = function() {
+      return this.getTimezoneOffset() < this.stdTimezoneOffset();
+    }
+
+    Date.prototype.getCurrentTimeIn12HourFormat = function () {
+      if (this.getHours() == 0) {
+        return 12 + ":" + padTimeString(this.getMinutes()) + " AM";
+      } else if (this.getHours() > 12) {
+        return padTimeString(this.getHours() - 12) + ":" + padTimeString(this.getMinutes()) + " PM";
+      } else {
+        return padTimeString(this.getHours()) + ":" + padTimeString(this.getMinutes()) + " AM";
+      }
+    }
+
+    var height, width, lat_ratio, long_ratio, font_size;
+    var differenceToGMT;
+
+    function updateDifferenceToGMT() {
+      differenceToGMT = (new Date()).dst() ? 25200 : 28800;
+    }
+
+    $(document).ready(function() {
+      setup();
+
+      $('.map').load(function () {
+        redraw();
+      });
+
+      $(window).on('resize', function () {
+        setTimeout(function () {
+          calculateImageDimensions();
+          redraw();
+        }, 200);
+      });
+    });
+
+    function setup() {
+      calculateImageDimensions();
+      updateDifferenceToGMT();
+
+      // handle time
+      populateTime(true);
+      setTimeout(function () {
+        populateTime();
+        setInterval(function () {
+          if ((new Date()).getMinutes() == 0) {
+            populateTime(true);
+          } else {
+            populateTime();
+          }
+        }, 60000);
+      }, (60 - (new Date()).getSeconds()) * 1000);
+    }
+
+    function redraw() {
+      calculateImageDimensions();
+      map_item = $('.map_item');
+      map_item.sort(function (a, b) {
+        return parseFloat($(b).attr("lat")) - parseFloat($(a).attr("lat"));
+      });
+      $('.map_item').css({ "font-size": font_size + "px" });
+      $.each(map_item, function (i, item) {
+        drawPoint($(this));
+      });
+    }
+
+    function calculateImageDimensions() {
+      image = $('img');
+      height = image.height();
+      width = image.width();
+      lat_ratio = height/170;
+      long_ratio = width/360;
+    }
+
+    function populateTime(syncTime) {
+      map_item = $('.map_item');
+      if(syncTime) {
+        $.each(map_item, function(i, item) {
+          sendAPIRequest($(this));
+        });
+      } else {
+        $.each(map_item, function(i, item) {
+          getTimeWithoutAPI($(this));
+        });
+      }
+    }
+
+    function drawPoint(item) {
+      current_lat = parseFloat(item.attr("lat"));
+      current_long = parseFloat(item.attr("long"));
+      item.css({
+        top: (height / 2) - (lat_ratio * current_lat) - (item.height() / 2) + "px",
+        left: (width / 2) + (long_ratio * current_long) - (item.width() / 2) + "px"
+      });
+      repositionOverlappingMapItems(item, parseInt(item.css("top")), parseInt(item.css("left")), item.height(), item.width());
+    }
+
+    function repositionOverlappingMapItems(item, top, left, height, width) {
+      overlaps = [];
+      overlaps.push(item);
+      overlaps = $.merge(overlaps, getOverlappingMapItems(item, top, left, height, width));
+      overlaps.sort(function (a, b) {
+        return parseFloat(b.attr("lat")) - parseFloat(a.attr("lat"));
+      });
+      last_called = 0;
+      i = 1; length = overlaps.length;
+      while (i < length) {
+        overlaps[i].css({ top: Math.ceil(parseFloat(overlaps[i - 1].css("top")) + parseFloat(overlaps[i - 1].height())) + 10 + "px" });
+        if (last_called != i) {
+          new_overlaps = getOverlappingMapItems(overlaps[i], parseInt(overlaps[i].css("top")), parseInt(overlaps[i].css("left")), overlaps[i].height(), overlaps[i].width());
+          overlaps = $.merge(overlaps, new_overlaps);
+          length = overlaps.length;
+          if (new_overlaps.length > 0) {
+            overlaps.sort(function (a, b) {
+              return parseFloat(b.css("lat")) - parseFloat(a.css("lat"));
+            });
+            i -= 1;
+          }
+          last_called = i;
+        }
+        i += 1;
+      }
+    }
+
+    function getOverlappingMapItems(item, top, left, height, width) {
+      map_items = $('.map_item');
+      overlaps = [];
+      $.each(map_items, function (i, curr) {
+        cur_top = parseFloat($(this).css("top"));
+        cur_left = parseFloat($(this).css("left"));
+        cur_height = $(this).height();
+        cur_width = $(this).width();
+        if ($(this).attr("name") !== item.attr("name")) {
+          if ((top + height) > cur_top && (left + width) > cur_left && top < (cur_top + cur_height) && left < (cur_left + cur_width)) {
+            overlaps.push($(this));
+          }
+        }
+      });
+      return overlaps;
+    }
+
+    function sendAPIRequest(item) {
+      current_lat = parseFloat(item.attr("lat"));
+      current_long = parseFloat(item.attr("long"));
+      updateDifferenceToGMT();
+      epoch = Math.round(new Date().getTime()/1000.0)+differenceToGMT;
+      $.ajax({
+        method: "GET",
+        url: "https://maps.googleapis.com/maps/api/timezone/json",
+        data: {
+          location: current_lat+","+current_long,
+          timestamp: epoch,
+          key: "AIzaSyCusD6rxTGfrs0rJ-5AmOk6XJzdFVGNVxY"
+        },
+        success: function(response) {
+          if(response.dstOffset == undefined || response.rawOffset == undefined) {
+            getTimeWithoutAPI(item);
+          } else {
+            current_time = Math.round(new Date().getTime()/1000.0)+differenceToGMT+response.dstOffset+response.rawOffset;
+            item.attr("dstOffset", response.dstOffset);
+            item.attr("rawOffset", response.rawOffset);
+            item.text(item.attr("name")+" "+(new Date(current_time*1000)).getCurrentTimeIn12HourFormat());
+            drawPoint(item);
+          }
+        },
+        error: function(msg) {
+          console.log(msg);
+          getTimeWithoutAPI(item);
+        }
+      });
+    }
+
+    function getTimeWithoutAPI(item) {
+      dstOffset = parseInt(item.attr("dstOffset"));
+      rawOffset = parseInt(item.attr("rawOffset"));
+      current_time = Math.round(new Date().getTime()/1000.0)+differenceToGMT+dstOffset+rawOffset;
+      item.text(item.attr("name")+" "+(new Date(current_time*1000)).getCurrentTimeIn12HourFormat());
+    }
+
+  </script>
+</head>
+<body>
+  <!-- Height: 1025px Width: 2048px -->
+  <img class="map" src="earth.jpg" alt="">
+  <!-- Latitude: -85 to 85 Longitude: -180 to 180 -->
+  <div class="map_item" lat="-6.21462" long="106.84513" name="Jakarta"></div>
+  <div class="map_item" lat="34.052235" long="-118.243683" name="Los Angeles"></div>
+  <div class="map_item" lat="41.881832" long="-87.623177" name="Chicago"></div>
+  <div class="map_item" lat="40.730610" long="-73.935242" name="New York"></div>
+  <div class="map_item" lat="52.520008" long="13.404954" name="Berlin"></div>
+  <div class="map_item" lat="48.864716" long="2.349014" name="Paris"></div>
+  <div class="map_item" lat="19.432608" long="-99.133209" name="Mexico City"></div>
+  <div class="map_item" lat="35.652832" long="139.839478" name="Tokyo"></div>
+  <div class="map_item" lat="49.246292" long="-123.116226" name="Vancouver"></div>
+  <div class="map_item" lat="-12.046374" long="-77.042793" name="Lima"></div>
+  <div class="map_item" lat="-22.752754" long="-42.864876" name="Rio De Janeiro"></div>
+  <div class="map_item" lat="-34.603722" long="-58.381592" name="Buenos Aires"></div>
+  <div class="map_item" lat="-33.918861" long="18.423300" name="Cape Town"></div>
+  <div class="map_item" lat="-1.362863" long="36.834583" name="Nairobi"></div>
+  <div class="map_item" lat="30.167206" long="31.594456" name="Cairo"></div>
+  <div class="map_item" lat="55.751244" long="37.618423" name="Moscow"></div>
+  <div class="map_item" lat="25.276987" long="55.296249" name="Dubai"></div>
+  <div class="map_item" lat="39.913818" long="116.363625" name="Beijing"></div>
+  <div class="map_item" lat="37.532600" long="127.024612" name="Seoul"></div>
+  <div class="map_item" lat="22.383205" long="114.141907" name="Hong Kong"></div>
+  <div class="map_item" lat="1.290270" long="103.851959" name="Singapore"></div>
+  <div class="map_item" lat="-31.953512" long="115.857048" name="Perth"></div>
+  <div class="map_item" lat="-33.865143" long="151.209900" name="Sydney"></div>
+  <div class="map_item" lat="51.508530" long="-0.076132" name="London"></div>
+</body>
+</html>
