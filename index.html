@@ -1,329 +1,465 @@
-<!DOCTYPE html>
-<html lang="en">
-<style>
-html, body {
-	width: 100%;
-	height: 100%;
-}
-h1, h2, p {
-	font-family: "Verdana";
-	margin: 0.25em 0;
-}
-.wrapper {
-	width: 80%;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 3em;
-	vertical-align: middle;
-}
-section.range-slider {
-	position: relative;
-	width: 640px;
-	height: 35px;
-	text-align: center;
-	margin: auto;
-}
-section.range-slider-values {
-	position: relative;
-	width: 640px;
-	height: 35px;
-	margin: auto;
-}
-section.range-slider input {
-	pointer-events: none;
-	position: absolute;
-	overflow: hidden;
-	left: 0;
-	top: 15px;
-	width: 640px;
-	outline: none;
-	height: 18px;
-	margin: 0;
-	padding: 0;
-}
-section.range-slider input::-webkit-slider-thumb {
-	pointer-events: all;
-	position: relative;
-	z-index: 1;
-	outline: 0;
-}
-section.range-slider input::-moz-range-thumb {
-	pointer-events: all;
-	position: relative;
-	z-index: 10;
-	-moz-appearance: none;
-	width: 9px;
-}
-section.range-slider input::-moz-range-track {
-	position: relative;
-	z-index: -1;
-	background-color: rgba(0, 0, 0, 1);
-	border: 0;
-}
-section.range-slider input:last-of-type::-moz-range-track {
-	-moz-appearance: none;
-	background: none transparent;
-	border: 0;
-}
-section.range-slider input[type=range]::-moz-focus-outer {
-	border: 0;
-}
-.search-results {
-	width: 640px;
-	margin: auto;
-}
-.search-results .video {
-	width: 100%;
-	text-align: left;
-	cursor: pointer;
-	background-color: #f2f2f2;
-	margin-bottom: 0.75em;
-	display: table;
-}
-.video h2 {
-	font-size: 1.5em;
-	margin: 0.25em 0;
-}
-.video p {
-	font-size: 1em;
-	margin: 0.25em 0;
-}
-.video .thumbnail {
-	display: inline-block;
-	margin: 5px;
-	margin-top: 1em;
-}
-.video .information {
-	display: inline-block;
-	text-align: left;
-	margin: 5px;
-	vertical-align: top;
-	width: 500px;
-}
-input[type="text"] {
-	border: 3px solid grey;
-	padding: 5px;
-}
-input[type="submit"] {
-	border: 3px solid #2c3e50;
-	padding: 5px;
-	background-color: #2c3e50;
-	color: white;
-	cursor: pointer;
-}
-</style>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-	var player;
-	var low, high;
-	var checkTime;
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Obed Tandadjaja Resume</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <style type="text/css">
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      ul li {
+        display: inline-block;
+        padding: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Page Wrapper -->
+      <div id="page-wrapper">
+        <!-- Header -->
+          <header id="header" class="alt">
+            <h1><a href="index.html">Solid State</a></h1>
+          </header>
 
-	$(document).ready(function() {
+        <!-- Banner -->
+          <section id="banner">
+            <div class="inner">
+              <div class="row">
+              <div class="logo" style="display: inline-box">
+                <img src="assets/images/mug.jpg" style="border-radius: 50%; max-height: 175px">
+              </div>
+              <div style="display: inline-box">
+                <h2>Obed Tandadjaja <font style="color: yellow; font-size: 0.5em; font-style: italic">Software Engineer</font></h2>
+                <ul>
+                  <li>
+                    <a href="#one" class="icon fa-file-code-o fa-2x" id="professional_link">
+                      <span class="label">
+                        Professional Experience
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#six" class="icon fa-tasks fa-2x" id="project_link">
+                      <span class="label">
+                        Personal Projects
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.linkedin.com/in/obedtandadjaja" target="_blank" class="icon fa-linkedin fa-2x">
+                      <span class="label">
+                        LinkedIn
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.github.com/obedtandadjaja" target="_blank" class="icon fa-github fa-2x">
+                      <span class="label">
+                        Github
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.instagram.com/obedjosiah" target="_blank" class="icon fa-instagram fa-2x">
+                      <span class="label">
+                        Instagram
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="mailto:obed.tandadjaja@gmail.com" class="icon fa-envelope fa-2x">
+                      <span class="label">
+                        Email
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://drive.google.com/open?id=0B6Ab-bZoLBt6TVFLVHVRVlhTV2M" class="icon fa-cloud-download fa-2x" id="download">
+                      <span class="label">
+                        Download Resume
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            </div>
+          </section>
 
-		// on submit click
-		$('input[type="submit"]').click(function() {
-			search();
-		});
+        <!-- Wrapper -->
+          <section id="wrapper">
 
-		// disable the submit button on document ready
-		$('input[type="submit"]').prop("disabled", true);
-		$('input[type="text"]').focus();
+              <section id="one" class="wrapper alt spotlight style1">
+                <div class="inner">
+                  <a class="image"><img src="assets/css/images/unical.png" alt="" /></a>
+                  <div class="content">
+                    <h2 class="major">Unical Aviation Inc. - <font style="color: yellow">Applications IT Developer</font></h2>
+                    <h4>Chattanooga - TN</h4>
+                    <p>
+                    Full-stack ASP.NET C# Developer. Built numerous Web Applications and Windows Services for company use ranging from
+                    automated Invoicing service to parsing and generating excel files for easy data inserts to the database.
+                    </p>
+                    <a href="https://drive.google.com/open?id=0B6Ab-bZoLBt6TVFLVHVRVlhTV2M" class="special">Learn more</a>
+                  </div>
+                </div>
+              </section>
+            
+              <section id="two" class="wrapper spotlight style2">
+                <div class="inner">
+                  <a class="image"><img src="assets/css/images/mymanny_logo.png" alt="" /></a>
+                  <div class="content">
+                    <h2 class="major">MyManny - <font style="color: yellow">Senior Developer</font></h2>
+                    <h4>Chattanooga - TN</h4>
+                    <p>
+                    Full-stack Ruby on Rails developer; handling design, front-end and back-end architecture,
+                    testing, database, and integration with third-party applications as well as overseeing
+                    two junior developers.
+                    </p>
+                    <a href="https://drive.google.com/open?id=0B6Ab-bZoLBt6TVFLVHVRVlhTV2M" class="special">Learn more</a>
+                  </div>
+                </div>
+              </section>
 
-		// hide search results on document ready
-		$('.search-results').hide();
+              <section id="three" class="wrapper alt spotlight style3">
+                <div class="inner">
+                  <a class="image"><img src="assets/css/images/metmin_logo.png" alt="" style="border-radius: 0" /></a>
+                  <div class="content">
+                    <h2 class="major">Metropolitan Ministries - <font style="color: yellow">Web Developer</font></h2>
+                    <h4>Chattanooga - TN</h4>
+                    <p>
+                    Full-stack Laravel web developer developing a forum-based website using Flux.
+                    Formulated an algorithm to figure out the changes made to the forum each day, and
+                    send out the updates to the respective subscribers of the channel.
+                    Enforced documentation and proper programming practices to other developers.
+                    </p>
+                    <a href="https://drive.google.com/open?id=0B6Ab-bZoLBt6TVFLVHVRVlhTV2M" class="special">Learn more</a>
+                  </div>
+                </div>
+              </section>
 
-		// initialize youtube iframe api
-		var tag = document.createElement('script');
-		tag.src = "https://www.youtube.com/iframe_api";
-		var firstScriptTag = document.getElementsByTagName('script')[0];
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-	});
+              <section id="four" class="wrapper spotlight style4">
+                <div class="inner">
+                  <a class="image"><img src="assets/css/images/protege_logo.png" alt="" /></a>
+                  <div class="content">
+                    <h2 class="major">Protégé - <font style="color: yellow">Front-end Developer</font></h2>
+                    <h4>Chicago - IL</h4>
+                    <p>
+                    Initiated a non-profit startup that serves as a platform to connect people who are
+                    willing to help community development projects.
+                    Developed the website's front-end displays and part of its back-end using Laravel,
+                    PHP, HTML, CSS, Javascript, and MySQL.
+                    </p>
+                    <a href="https://drive.google.com/open?id=0B6Ab-bZoLBt6TVFLVHVRVlhTV2M" class="special">Learn more</a>
+                  </div>
+                </div>
+              </section>
 
-	// called on youtube iframe api ready
-	function init() {
-		gapi.client.setApiKey("AIzaSyCzDxBgSiJZb4xVQdVoKIrEpbHs3xpIvYU");
-		gapi.client.load("youtube", "v3", function() {
-			// enable submit button when youtube api ready
-			$('input[type="submit"]').removeAttr("disabled");
-		});
-	}
+              <section id="five" class="wrapper alt spotlight style5">
+                <div class="inner">
+                  <a class="image"><img src="assets/css/images/covenant_logo.png" alt="" /></a>
+                  <div class="content">
+                    <h2 class="major">Covenant College - <font style="color: yellow">Computer Science Tutor</font></h2>
+                    <h4>Lookout Mountain - GA</h4>
+                    <p>
+                    Tutored approximately 20 computer science majors with their various programming
+                    problems typically in Java or Python.
+                    Learned multiple people skills including active listening, patience, and effective
+                    communication/instruction.
+                    </p>
+                    <a href="https://drive.google.com/open?id=0B6Ab-bZoLBt6TVFLVHVRVlhTV2M" class="special">Learn more</a>
+                  </div>
+                </div>
+              </section>
 
-	// search for youtube video
-	function search() {
-		var request = gapi.client.youtube.search.list({
-			part: "snippet",
-			type: "video",
-			q: encodeURIComponent($('input[type="text"]').val()).replace(/%20/g, "+"),
-			maxResults: 10,
-			order: "viewCount"
-		});
+              <section id="six" class="wrapper spotlight style6">
+                <div class="inner">
+                  <a class="image"><img src="assets/css/images/proint_logo.png" alt="" /></a>
+                  <div class="content">
+                    <h2 class="major">PT. ProInt Dinamika - <font style="color: yellow">Software Engineer Intern</font></h2>
+                    <h4>Jakarta - Indonesia</h4>
+                    <p>
+                    Created an Android version of the company's web application.
+                    Developed the entire app in 9 days by myself; handled databases and presented
+                    official demonstration of the app to employees.
+                    </p>
+                    <a href="https://drive.google.com/open?id=0B6Ab-bZoLBt6TVFLVHVRVlhTV2M" class="special">Learn more</a>
+                  </div>
+                </div>
+              </section>
 
-		// on request response, populate the search results
-		request.execute(function(response) {
-			$('.search-results').show();
-			$('html, body').animate({
-				scrollTop: $('.search-results').offset().top
-			}, 1000);
-			$(".video").remove();
-			$.each(response.result.items, function(i, item) {
-				$(".search-results").append(
-					'<div class="video" id="' + item.id.videoId + '">' +
-					'<div class="thumbnail">' +
-					'<img src="' + item.snippet.thumbnails.default.url + '" />' +
-					'</div>' +
-					'<div class="information">' +
-					'<h2>' + item.snippet.title + '</h2>' +
-					'<p> By ' + item.snippet.channelTitle + '</p>' +
-					'<p>' + item.snippet.description + '</p>' +
-					'</div>' +
-					'</div>'
-				);
+            <!-- Four -->
+              <section id="seven" class="wrapper alt style1">
+                <div class="inner">
+                  <h2 class="major">Personal Projects</h2>
+                  <p>Listed here are my personal projects that I do for fun in my spare time. I try to do 2 or 3 projects a week when I have the time. All of them are either posted on my Github account or hosted on Heroku.</p>
+                  <section class="features">
+                    <article>
+                      <h3 class="major">Timezone Map</h3>
+                      <p>
+                      At work I was assigned to develop an application to display different times of major cities around the world for our sales team. This application will be displayed in a huge screen for the sales people to check before calling our international customers. The code that I am posting on Github is obviously different from the one I developed for my company (more detail on this on Github). I intentionally built the app entirely from HTML and Javascript/Jquery for it to be easily extended for other framework. I'm using Google Maps Time API to get the time offset of the location against GMT. 
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/time_zone_map.html" class="special">View live demo</a>
+                      <a href="https://github.com/obedtandadjaja/time_zone_map" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Youtube on Repeat</h3>
+                      <p>
+                      Challenged myself to replicate the core functionality of <a href="http://www.listenonrepeat.com">http://www.listenonrepeat.com</a>. ListenOnRepeat is a website that I often use to listen to Youtube videos on loop. I cannot do this on Youtube since usually I only want to watch a portion of the videos on loop (not the entire thing), and ListenOnRepeat allows me to do that by specifying a range of time to loop. However, lately they added unnecessary functionalities such as the ability to like videos, loop playlists, tracking videos you watched, etc. that took away the simplicity of it that I liked. Plus, they also have ads now, which prompted me to make a version of it and use it as a replacement to ListenOnRepeat.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/youtube_on_repeat.html" class="special">View live demo</a>
+                      <a href="https://github.com/obedtandadjaja/youtube_on_repeat" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Flappy Bird</h3>
+                      <p>
+                      I made a simple flappy bird using P5.js and simple Javascript. The algorithm uses calculation regarding velocity, gravity, and direction.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/flappy_bird.html" class="special">View live demo</a>
+                      <a href="https://www.github.com/obedtandadjaja/flappy_bird" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Maze Generator</h3>
+                      <p>
+                      Built a maze generator using P5.js for visualization and object-oriented Javascript for the algorithm. Used specifically Depth First Search with Backtracking to generate the maze.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/maze_generator.html" class="special">View live demo</a>
+                      <a href="https://www.github.com/obedtandadjaja/maze_generator" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Tower of Hanoi</h3>
+                      <p>
+                      Built a tower of hanoi game simulator. Because the amount of steps needed to complete the game grows exponentially as you add more plates to the stack, I made a simulator that can finish the game way faster than humans can.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/towerofhanoi.html" class="special">View live demo</a>
+                      <a href="https://www.github.com/obedtandadjaja/tower_of_hanoi" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Beautify JSON</h3>
+                      <p>
+                      Made a Jquery plugin to parse and show JSON string into a human-readable format. A simple, light-weight jquery plugin that makes your JSON messages easier to read.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/beautifyjson.html" class="special">View live demo</a>
+                      <a href="https://www.github.com/obedtandadjaja/beautify-json" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Matrix Rain</h3>
+                      <p>
+                      Matrix Rain visualization generator. I tried to replicate the same matrix code rain that was shown multiple times in the Trilogy.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/matrix_rain.html" class="special">View live demo</a>
+                      <a href="https://www.github.com/obedtandadjaja/matrix_rain" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Snake Game</h3>
+                      <p>
+                      Built a simple snake game using P5.js for visualization and object-oriented Javascript.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/snake.html" class="special">View live demo</a>
+                      <a href="https://www.github.com/obedtandadjaja/snake_game" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Finite Automata Simulator</h3>
+                      <p>
+                      Built a finite automata simulator to help me do my Computer Theory homework and assignment. Warning! Because I built this simulator for personal-use and that I was limited on time, this simulator has a lot of room to improve on, especially on its ease-of-use. For this reason, it might be hard for other people to use it since it is quite complicated to use. The code is also not the prettiest and the methods are not modularized, but HEY IT WORKS.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/finiteautomata.html" class="special">View live demo</a>
+                      <a href="https://www.github.com/obedtandadjaja/finite_automata" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">A* Pathing Generator</h3>
+                      <p>
+                      Built a pathing simulator through a maze using A* algorithm.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/astar_path_generator.html" class="special">View live demo</a>
+                      <a href="https://www.github.com/obedtandadjaja/astar_path_generator" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Dijkstra Pathing Generator</h3>
+                      <p>
+                      Built a pathing simulator through a maze using Dijkstra algorithm.
+                      </p>
+                      <a href="https://obedtandadjaja.github.io/dijkstra_path_generator.html" class="special">View live demo</a>
+                      <a href="https://www.github.com/obedtandadjaja/dijkstra_path_generator" class="special">View Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Covenant College Resume-Builder</h3>
+                      <p>
+                      Built an online resume builder for my college in Ruby on Rails.
+                      Designed the whole functionality to be similar to the one that is used by
+                      <a href="http://www.internships.com">Internships.com</a>
+                      Used Wicked_pdf to generate a PDF file from an HTML layout.
+                      </p>
+                      <a href="https://www.github.com/obedtandadjaja/resume-builder" class="special">View in Github</a>
+                      <a href="https://simple-resume-builder.herokuapp.com" class="special">View in Heroku</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Battleship Online Game</h3>
+                      <p>
+                      Created a battleship online game based on Ruby on Rails with my friends.
+                      In charge of the front-end design, authentication mechanism, AJAX handling,
+                      Websockets, and database management.
+                      Developed a game lobby system similar to that of an MMO game (party-leader
+                      kick/invite authority, and password protected lobbies).
+                      Used Websockets to invoke back-end code whenever a new lobby is
+                      hosted/destroyed, a new player just entered the lobby, when the game starts, and on
+                      each fire in game.
+                      </p>
+                      <a href="http://covenant-battleship.herokuapp.com" target="_blank" class="special">View Alpha version on Heroku</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Covenant College Course Scheduler</h3>
+                      <p>
+                      Built an advising web application to enable students to schedule courses without
+                      their advisor.
+                      Designed the front-end displays, creating and managing the back-end, outlining the
+                      database design, and setting up the site’s authentication.
+                      Learned to use Ruby on Rails and acquired more skills in AJAX, front-end and
+                      back-end programming, and PostgreSQL.
+                      </p>
+                      <a href="http://www.github.com/obedtandadjaja/Advising" target="_blank" class="special">View in Github</a>
+                      <a href="http://covenantadvising.herokuapp.com" target="_blank" class="special">View Beta version on Heroku</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Online Art Portfolio</h3>
+                      <p>
+                      Developed a Ruby on Rails application for displaying my friend’s artworks and
+                      projects.
+                      Used multiple RoR plugins such as PaperClip for managing images, Devise for
+                      authentication protocol, and Friendly-ID for slugs.
+                      Made an admin configuration page similar to WordPress for my friend to easily
+                      manage the content of the website.
+                      </p>
+                      <a href="http://www.github.com/obedtandadjaja/jennifer_portfolio" target="_blank" class="special">View in Github</a>
+                      <a href="http://jenniferwiriawan.herokuapp.com" target="_blank" class="special">View plain Demo on Heroku</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Website Check Scheduler</h3>
+                      <p>
+                      Made a web application that checks an e-commerce website whether the item is
+                      available or has the price gone lower than a certain price. The application will notify
+                      me through email when it does.
+                      Using Watir and phantomJS to visit the website and then parse the HTML elements
+                      using Nokogiri and wrap it around a custom rake task. A scheduler will then run the
+                      rake task every ten minutes.
+                      Hosted on Heroku and running on the Rails framework.
+                      </p>
+                      <a href="http://www.github.com/obedtandadjaja/web_check_scheduler" target="_blank" class="special">View in Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Hmar Bible Android App</h3>
+                      <p>
+                      Working with missionaries in Burma to develop an Android Bible app for some parts
+                      of the country that are banned from having a Bible.
+                      Developed the back-end architecture and algorithm along with the database design
+                      and handling.
+                      A slight modification from my Indo/English Bible app.
+                      </p>
+                      <a href="http://www.github.com/obedtandadjaja/HmarBible" target="_blank" class="special">View in Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Memories Web-App</h3>
+                      <p>
+                      Made a web application that displays a timeline of interaction (exchange of messages
+                      and pictures) between two people on Facebook and iChat.
+                      Used Facebook and iChat API to obtain the data, changed its format to be queryable,
+                      fed the data to the database, and displayed it as a timeline.
+                      Built a URL query handled by AJAX that updates the timeline to the next twenty interactions or direct it to a certain date.
+                      </p>
+                    </article>
+                    <article>
+                      <h3 class="major">Infinite-scroll Timeline Ajax Plugin</h3>
+                      <p>
+                      Developed an infinite scroll Javascript plugin that uses AJAX to obtain more data and
+                      append it to the timeline.
+                      Worked with JQuery and CSS.
+                      Heavily modified timeline plugin from CodyHouse to interact well with the infinite
+                      scroll functionality.
+                      </p>
+                      <a href="http://www.github.com/obedtandadjaja/Timeline-Infinite-Scroll-Ajax" target="_blank" class="special">View in Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Pocket Tool Android App</h3>
+                      <p>
+                      Created a utility Android app that makes all your daily tools to be available in one
+                      simple app.
+                      Mobile App design and development.
+                      Devised algorithm for converting various units. Designed a Java program to extract
+                      dictionary data in xml, txt, and HTML to SQL inserts.
+                      </p>
+                      <a href="http://www.github.com/obedtandadjaja/Pocket-Tool" target="_blank" class="special">View in Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Indo/English Bible Android App</h3>
+                      <p>
+                      Programmed an Indonesian/English Bible Android app for daily use.
+                      Constructed database design. Extracted content from outside source.
+                      Experimented with flat UI design and incorporated it to the app.
+                      </p>
+                      <a href="http://www.github.com/obedtandadjaja/Bible" target="_blank" class="special">View in Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Simple Dictionary Android App</h3>
+                      <p>
+                      Published a Dictionary Android app that translates multiple languages.
+                      Made a Java program that extracts dictionary data from HTML files and feed it to the
+                      database. Developed efficient SQL queries and inserts to database using bulk insert
+                      wrapped in a single transaction.
+                      Mined more than 130,000 records of dictionary data for various language
+                      translations.
+                      </p>
+                      <a href="http://www.github.com/obedtandadjaja/Dictionary" target="_blank" class="special">View in Github</a>
+                    </article>
+                    <article>
+                      <h3 class="major">Evenki Android App</h3>
+                      <p>
+                      Created a language-learning Android app for a dying Russian dialect.
+                      Worked together in a team of four and finished the app in just 3 days.
+                      Experienced interaction with clients. Collaborated with developers from different
+                      backgrounds. Assigned as head of project.
+                      </p>
+                    </article>
+                    <article>
+                      <h3 class="major">Custom Alarm Android App</h3>
+                      <p>
+                      Built a Custom Alarm Android app that turns off once the user solves a math problem.
+                      Experimented with Android Infrastructure and XML.
+                      </p>
+                      <a href="http://www.github.com/obedtandadjaja/CustomAlarm" target="_blank" class="special">View in Github</a>
+                    </article>
+                  </section>
+                </div>
+              </section>
 
-				// register click event to each one of them
-				$(".search-results .video:last-child").click(function(e) {
-					stopCheckTime(); // clears check time interval
-					setNewYoutubeVideo($(this).attr("id")); // sets new video
+          </section>
 
-					// scroll to top of page
-					$('html, body').animate({
-						scrollTop: 0
-					}, 1000);
-				});
-			});
-		});
-	}
+        <!-- Footer -->
+          <section id="footer">
+            <div class="inner">
+              <h2 class="major">Get in touch</h2>
+              <ul class="contact">
+                <li class="fa-phone">(559) 473-7555</li><br>
+                <li class="fa-envelope"><a href="mailto:obed.tandadjaja@gmail.com">obed.tandadjaja@gmail.com</a></li>
+                <li class="fa-facebook"><a href="http://facebook.com/obed.josiah">facebook.com/obed.josiah</a></li>
+              </ul>
+              <ul class="copyright">
+                <li>&copy; Obed Tandadjaja. All rights reserved.</li>
+              </ul>
+            </div>
+          </section>
 
-	// Get slider values
-	function getVals() {
-  	var parent = this.parentNode;
-  	var slides = parent.getElementsByTagName("input");
-  	low = parseFloat(slides[0].value);
-  	high = parseFloat(slides[1].value);
-  	if( low > high ) {
-  		var tmp = high;
-  		high = low;
-  		low = tmp;
-  	}
-  	$("#start_value").text(secondsToMinutes(low));
-  	$("#end_value").text(secondsToMinutes(high));
-
-  	if(low > player.getCurrentTime()) {
-  		player.seekTo(low, true);
-  	}
-  }
-
-  function secondsToMinutes(seconds) {
-  	minute = Math.floor(seconds/60);
-  	sec = (seconds%60);
-  	return minute + ":" +sec;
-  }
-
-	// replace player with new one and set the video
-  function setNewYoutubeVideo(src) {
-  	$("#player").remove();
-  	$(".range-slider").before("<div id='player'></div>");
-  	player = new YT.Player('player', {
-  		height: '390',
-  		width: '640',
-  		videoId: String(src),
-  		events: {
-  			'onReady': onPlayerReady,
-  			'onStateChange': onPlayerStateChange
-  		},
-  		playerVars: {
-  			autoplay: 1,
-  			rel: 0,
-  			showinfo: 0,
-  			wmode: "Opaque",
-  			color: "white"
-  		}
-  	});
-  }
-
-	// set slider default values
-  function updateSliders() {
-  	var slide1 = $(".range-slider input:nth-child(1)");
-  	var slide2 = $(".range-slider input:nth-child(2)");
-  	slide1.attr('max', player.getDuration()-1);
-  	slide2.attr('max', player.getDuration()-1);
-  	slide2.attr('value', player.getDuration()-1);
-  	var sliderSections = document.getElementsByClassName("range-slider");
-  	for( var x = 0; x < sliderSections.length; x++ ){
-  		var sliders = sliderSections[x].getElementsByTagName("input");
-  		for( var y = 0; y < sliders.length; y++ ){
-  			if( sliders[y].type ==="range" ) {
-  				sliders[y].oninput = getVals;
-  				sliders[y].oninput();
-  			}
-  		}
-  	}
-
-  	$(".range-slider").show();
-  	$(".range-slider-values").show();
-  }
-
-  function onYouTubeIframeAPIReady() {
-  	setNewYoutubeVideo("TkxEDJSLtyI");
-  }
-
-  function onPlayerReady(event) {
-  	updateSliders();
-  	event.target.playVideo();
-  	setCheckTime();
-  }
-
-	// check the video time every 0.5 sec
-  function setCheckTime() {
-  	checkTime = setInterval(function() {
-  		if(player != undefined) {
-  			if(player.getCurrentTime() >= high) {
-  				player.seekTo(low);
-  			} else if(player.getCurrentTime() < low) {
-  				player.seekTo(low);
-  			}
-  		}
-  	}, 500);
-  }
-
-  function stopCheckTime() {
-  	clearInterval(checkTime);
-  }
-
-  function onPlayerStateChange(event) {
-  	if(event.data === 0) {
-  		event.target.playVideo();
-  		event.target.seekTo($(".range-slider input:nth-child(1)").value, true);
-  	}
-  }
-	</script>
-	<script src="https://apis.google.com/js/client.js?onload=init"></script>
-	<head>
-		<meta charset="UTF-8">
-		<title>Listen On Repeat</title>
-	</head>
-	<body>
-		<div class="wrapper">
-			<h1>Youtube on Repeat</h1>
-			<br>
-			<input type="text" placeholder="Search Youtube video" />
-			<input type="submit" />
-			<br>
-			<br>
-			<div id="player"></div>
-			<br>
-			<section class="range-slider">
-				<input value="0" min="0" max="168" step="1" type="range">
-				<input value="168" min="0" max="168" step="1" type="range">
-			</section>
-			<section class="range-slider-values">
-				<p id="start_value" style="float: left"></p>
-				<p id="end_value" style="float: right"></p>
-			</section>
-			<div class="search-results">
-				<h1>Search Results</h1>
-			</div>
-		</div>
-	</body>
+      </div>
+    <!-- Scripts -->
+      <script src="assets/js/skel.min.js"></script>
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.scrollex.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <script src="assets/js/main.js"></script>
+  </body>
 </html>
