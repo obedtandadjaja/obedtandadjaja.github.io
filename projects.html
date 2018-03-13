@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="Description" content="Author: Obed Tandadjaja,
+      Description: Projects by Obed Tandadjaja">
+  <title>Obed Tandadjaja Projects</title>
+
+  <style>
+    h1, h2, h3, h4, h5, h6, p {
+      margin: 5px 0;
+    }
+
+    #app {
+      font-family: Avenir,Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-align: center;
+      color: #1a535c;
+      margin-top: 60px;
+      max-width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .navigation {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      height: 60px;
+      -ms-flex-line-pack: center;
+      align-content: center;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+      .navigation a {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1a535c;
+        text-decoration: none;
+        margin: 0 8px;
+      }
+
+      .navigation .logo a {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+
+      .navigation .logo {
+        text-align: left;
+      }
+
+      .navigation .navigation--links {
+        text-align: right;
+      }
+
+    .body {
+      max-width: 960px;
+      margin: 50px auto;
+      text-align: left;
+      margin-bottom: 40px;
+      min-height: 100%;
+      position: relative;
+    }
+
+      .body .header-title {
+        margin-left: 8px;
+        font-size: 1.2rem;
+        position: relative;
+        color: #1a535c;
+      }
+
+    .cards {
+      width: 100%;
+      max-width: 960px;
+      display: grid;
+      grid-template-columns: 20% 20% 20% 20% 20%;
+      padding: 20px 0 40px 0;
+      border-top: solid 2px #d3d3d3;
+    }
+
+    .card {
+      height: 300px;
+      margin: 8px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #fff;
+      color: grey;
+      position: relative;
+      box-shadow: 0 0 50px 5px hsla(0,0%,79%,.25);
+      transition: all ease .5s;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      background-color: rgb(49, 178, 141);
+      color: white;
+      top: -10px;
+    }
+
+      .card a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .card__header {
+        position: relative;
+        overflow: hidden;
+        text-align: left;
+      }
+
+        .card__header-title {
+          font-size: 1.2rem;
+          font-weight: 700;
+        }
+
+      .card__image {
+        object-fit: cover;
+      }
+
+        .card__image--resized {
+          position: absolute;
+          height: 1000px;
+          width: 600px;
+          overflow: hidden;
+          transform: rotate(-20deg);
+          background-color: white;
+          border: solid 0.5px grey;
+        }
+
+        .card__image img {
+          background-color: #fff;
+          overflow: hidden;
+          border-radius: 12px;
+        }
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="header">
+      <nav>
+        <div class="navigation">
+          <div class="logo"><a>Obed Tandadjaja</a></div>
+          <div class="navigation--links">
+            <a href="index.html">Home</a>
+            <a href="https://www.github.com/obedtandadjaja/" target="_blank">Github</a>
+            <a href="https://www.linkedin.com/in/obedtandadjaja/" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="body">
+      <p style="text-align: center">
+        Listed here are my personal projects that I do for fun in my spare time. I try to do 2 or 3 projects a week when I have the time.
+        <br>All of them are either posted on my Github account or hosted on Heroku.
+      </p>
+      <br>
+
+      <!-- Library Projects -->
+      <h4 class="header-title">Opensource Library Projects</h4>
+      <div class="cards">
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/CSharp_DynamicJSONParser" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">C#</div>
+              <div class="card__header-title">JSON Dynamic Parser</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/beautify-json" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-title">Beautify JSON</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://github.com/obedtandadjaja/beautify-json/blob/master/strict.png?raw=true">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/Timeline-Infinite-Scroll-Ajax" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-tag">AJAX</div>
+              <div class="card__header-title">Infinite-scroll Timeline</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://github.com/obedtandadjaja/Timeline-Infinite-Scroll-Ajax/blob/master/screenshot-small.png?raw=true">
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Data Mining -->
+      <h4 class="header-title">Data Mining | Big Data</h4>
+      <div class="cards">
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/bible_web_crawler" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Web Crawler</div>
+              <div class="card__header-tag">Python + Selenium</div>
+              <div class="card__header-title">Bible.com</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://raw.githubusercontent.com/obedtandadjaja/bible_web_crawler/master/screenshot.png">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/hadoop_exercises" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Hadoop</div>
+              <div class="card__header-tag">Map/Reduce</div>
+              <div class="card__header-title">Big Data Exercises</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="http://www.github.com/obedtandadjaja/web_check_scheduler" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Ruby on Rails</div>
+              <div class="card__header-tag">Scheduled Job</div>
+              <div class="card__header-tag">Web scraper</div>
+              <div class="card__header-title">Price Checker</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Applications -->
+      <h4 class="header-title">Mobile Applications</h4>
+      <div class="cards">
+        <div class="card spacemob">
+          <a href="https://play.google.com/store/apps/details?id=com.obedtandadjaja.TipCalculator" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">React Native</div>
+              <div class="card__header-title">Tip Calculator</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://lh3.googleusercontent.com/cRDJ9ekhDfD2qv2elbgemMIzzEqy0LL8CUTMqIsXk4suQybDsbGMST-gC6tm8bdiaUU=h900-rw">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://play.google.com/store/apps/details?id=com.app.obedtandadjaja.bible" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Android</div>
+              <div class="card__header-tag">3000+ downloads</div>
+              <div class="card__header-title">Indo/English Bible</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://lh3.googleusercontent.com/lgQ69Pm4FZXcvzMs_YdtxeWSgZiwoPjoravUh-wu9GcNtIBJy9MNzzGahYKL8WVp9bM=h900-rw">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://play.google.com/store/apps/details?id=com.app.obedtandadjaja.multifunctional" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Android</div>
+              <div class="card__header-tag">3000+ downloads</div>
+              <div class="card__header-title">Pocket Tool</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://lh3.googleusercontent.com/5z4sAzxpiQ9vGkXVPDPCcPJ9_paGr7Xw0h7XwPFmUMKdwwl5URtzY8NuQHl1TkVz81Y=h900-rw">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="http://www.github.com/obedtandadjaja/HmarBible" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Android</div>
+              <div class="card__header-tag">Opensource</div>
+              <div class="card__header-title">Hmar Bible</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://play.google.com/store/apps/details?id=com.app.obedtandadjaja.dictionary" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Android</div>
+              <div class="card__header-tag">Offline DB</div>
+              <div class="card__header-title">Simple Dictionary</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://lh3.googleusercontent.com/kfAPHbvaqmjQzCjvSDB83wNqjYexoC2Ggfo1l01jgjg4tADFympjyoXBA7IseB-swio=h900-rw">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="#" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Android</div>
+              <div class="card__header-tag">Language-learning</div>
+              <div class="card__header-tag">Hack-a-thon</div>
+              <div class="card__header-title">Evenki</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="http://www.github.com/obedtandadjaja/CustomAlarm" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Android</div>
+              <div class="card__header-tag">Practice</div>
+              <div class="card__header-title">Custom Alarm</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Web Projects -->
+      <h4 class="header-title">Web Projects</h4>
+      <div class="cards">
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/Advising" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Ruby on Rails</div>
+              <div class="card__header-tag">AJAX</div>
+              <div class="card__header-tag">PostgreSQL</div>
+              <div class="card__header-title">Course Scheduler</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://github.com/obedtandadjaja/Advising/blob/master/Screenshot%202017-02-14%2000.04.00.png?raw=true">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/resume-builder" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Ruby on Rails</div>
+              <div class="card__header-title">Resume Builder</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://github.com/obedtandadjaja/resume-builder/blob/master/Screenshot%202017-02-13%2023.52.13.png?raw=true">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="http://covenant-battleship.herokuapp.com" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Ruby on Rails</div>
+              <div class="card__header-tag">AJAX</div>
+              <div class="card__header-tag">WebSocket</div>
+              <div class="card__header-title">Battleship Online Game</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://i.pinimg.com/564x/76/2b/2b/762b2b6c4dd71aafdab027d2bd887c52--battleship-game-online-john-lewis.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="http://www.github.com/obedtandadjaja/jennifer_portfolio" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Ruby on Rails</div>
+              <div class="card__header-tag">Design</div>
+              <div class="card__header-title">Online Art Portfolio</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/time_zone_map" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Concurrency</div>
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-tag">Google Time API</div>
+              <div class="card__header-title">Timezone Map</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://raw.githubusercontent.com/obedtandadjaja/time_zone_map/master/example.png">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/youtube_on_repeat" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-tag">Youtube API</div>
+              <div class="card__header-title">Youtube on Repeat</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://listenonrepeat.com/static/img/lor-logo-large@2x.png">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/youtube_practice" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">React</div>
+              <div class="card__header-tag">Webpack</div>
+              <div class="card__header-tag">Lazy load</div>
+              <div class="card__header-title">Youtube Clone</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/instagram_practice" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">React</div>
+              <div class="card__header-tag">Redux</div>
+              <div class="card__header-tag">Webpack</div>
+              <div class="card__header-title">Instagram Clone</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://www.github.com/obedtandadjaja/finite_automata" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">go.js</div>
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-title">Finite Automata Simulator</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://www.github.com/obedtandadjaja/astar_path_generator" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">P5.js</div>
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-title">A* Pathing Simulator</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://www.github.com/obedtandadjaja/maze_generator" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">P5.js</div>
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-title">Maze Generator</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://www.youcubed.org/wp-content/uploads/2017/03/Too-Big-or-Too-Small.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://www.github.com/obedtandadjaja/tower_of_hanoi" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">P5.js</div>
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-title">Tower of Hanoi</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://www.github.com/obedtandadjaja/matrix_rain" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">P5.js</div>
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-title">Matrix Rain</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://i.ytimg.com/vi/kqUR3KtWbTk/maxresdefault.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://www.github.com/obedtandadjaja/flappy_bird" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">P5.js</div>
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-title">Flappy Bird</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="card spacemob">
+          <a href="https://www.github.com/obedtandadjaja/snake_game" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">P5.js</div>
+              <div class="card__header-tag">Javascript</div>
+              <div class="card__header-title">Snake</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="assets/images/pic07.jpg">
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Java | C++ -->
+      <h4 class="header-title">Java | C++</h4>
+      <div class="cards">
+        <div class="card spacemob">
+          <a href="https://github.com/obedtandadjaja/Coffee-Shop-Cashier" target="_blank" rel="noopener">
+            <div class="card__header">
+              <div class="card__header-tag">Java</div>
+              <div class="card__header-tag">Swing GUI</div>
+              <div class="card__header-title">Coffee Shop Cashier</div>
+            </div>
+            <div class="card__image">
+              <div class="card__image--resized">
+                <img src="https://github.com/obedtandadjaja/Coffee-Shop-Cashier/blob/master/screenshot.png?raw=true">
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
